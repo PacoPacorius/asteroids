@@ -4,8 +4,8 @@
 int main() {
 
 
-	sf::Window window(sf::VideoMode(800, 600), "My window");
-
+	sf::Window window(sf::VideoMode(800, 600), "My window"); 
+    
     while (window.isOpen())
     {
         // check all the window's events that were triggered since the last iteration of the loop
@@ -17,6 +17,8 @@ int main() {
                 window.close();
         }
     }
+
+    // this is a comment
 
 
 	return 0;
