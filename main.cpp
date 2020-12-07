@@ -5,7 +5,7 @@
 int main() {
 
 
-	sf::Window window(sf::VideoMode(800, 600), "My window"); 
+	sf::Window window(sf::VideoMode(800, 600), "THE FEELING YOU GET FROM A COCA COLA"); 
     
     while (window.isOpen())
     {

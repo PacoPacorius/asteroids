@@ -2,20 +2,24 @@
 #include <SFML/Graphics.hpp>
 
 /// ENTITY
-/// T H I S  will take care of position, physics, movements, textures, sprites
+/// T H I S  will take care of position, physics, movements, textures, sprites, collisions(todo)
+/// 
+/// maybe handle rotation from here? Asteroids could have one common texture and we could rotate that to give an illusion of many different asteroids
 /// ENTITY
 
 class Entity {
-private:
+protected:
 	sf::Vector2f position;		// (x, y) position coordinates of the entity
 	sf::Vector2f velocity;		// (x, y) velocity of the entity
 	sf::Vector2f acceleration;		// (x, y) acceleration of the entity
 
+private:
 	sf::Texture tex;
 	sf::Sprite spr;
+
 public:
 	Entity();
-	Entity(sf::Texture in_tex, sf::Sprite in_spr);
+	Entity(sf::Texture in_tex);
 	sf::Vector2f get_position() const { return position; };
 	sf::Vector2f get_velocity() const { return velocity; };
 	sf::Vector2f get_acceleration() const { return acceleration; };
