@@ -3,6 +3,7 @@
 
 int main() {
 
+
 	sf::Window window(sf::VideoMode(800, 600), "My window");
 
     while (window.isOpen())
@@ -16,6 +17,7 @@ int main() {
                 window.close();
         }
     }
+
 
 	return 0;
 }
