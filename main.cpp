@@ -5,7 +5,7 @@
 int main() {
 
 
-	sf::Window window(sf::VideoMode(800, 600), "THE FEELING YOU GET FROM A COCA COLA"); 
+	sf::Window window(sf::VideoMode(800, 600), "THE FEELING YOU GET FROM A COCA COLA :("); 
     
     while (window.isOpen())
     {
@@ -19,9 +19,7 @@ int main() {
         }
     }
 
-
-    // this is agnidufhpi
-
+  
 
 	return 0;
 }
