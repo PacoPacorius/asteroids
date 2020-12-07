@@ -1,4 +1,5 @@
 #include <SFML/Graphics.hpp>
+#include "Entity.h"
 
 
 int main() {
@@ -19,7 +20,7 @@ int main() {
     }
 
 
-    // this is agnidufhpiug
+    // this is agnidufhpi
 
 
 	return 0;
