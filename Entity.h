@@ -20,6 +20,7 @@ private:
 public:
 	Entity();
 	Entity(sf::Texture in_tex);
+	Entity(sf::Texture in_tex, sf::Vector2f in_position);
 	sf::Vector2f get_position() const { return position; }
 	sf::Vector2f get_velocity() const { return velocity; }
 	sf::Vector2f get_acceleration() const { return acceleration; }

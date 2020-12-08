@@ -1,16 +1,17 @@
 #include <SFML/Graphics.hpp>
+#include <iostream>
 #include "Entity.h"
 #include "Player.h"
 
 
 int main() {
+	sf::RenderWindow window(sf::VideoMode(1024, 768), "THE FEELING YOU GET FROM A COCA COLA :("); 
 
     sf::Texture tex_ship;
-    tex_ship.loadFromFile("Assets/Ship.png");
+    if (!tex_ship.loadFromFile("Assets/Ship.png")) std::cout << "Hi" << std::endl;
 
-    Player ship(tex_ship, sf::Vector2f(50.f, 50.f));
+    Player ship(tex_ship, sf::Vector2f(250.f, 300.f));
     
-	sf::RenderWindow window(sf::VideoMode(1024, 768), "THE FEELING YOU GET FROM A COCA COLA :("); 
     
     while (window.isOpen())
     {
@@ -22,14 +23,12 @@ int main() {
             if (event.type == sf::Event::Closed)
                 window.close();
         }
+        window.clear();
+
+        window.draw(ship.get_spr());
+
+        window.display();
     }
-
-    window.clear();
-
-    //window.draw(ship.get_spr());
-
-    window.display();
-  
 
 	return 0;
 }

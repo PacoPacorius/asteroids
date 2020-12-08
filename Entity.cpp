@@ -13,4 +13,15 @@ Entity::Entity(sf::Texture in_tex) {
 
 	tex = in_tex;
 	spr.setTexture(tex);
+	spr.setPosition(position);
+}
+
+Entity::Entity(sf::Texture in_tex, sf::Vector2f in_position) {
+	position = in_position;
+	velocity = sf::Vector2f(0.f, 0.f);
+	acceleration = sf::Vector2f(0.f, 0.f);
+
+	tex = in_tex;
+	spr.setTexture(tex);
+	spr.setPosition(position);
 }
