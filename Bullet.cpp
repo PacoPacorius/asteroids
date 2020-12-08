@@ -3,9 +3,9 @@
 Bullet::Bullet() : Entity() {}
 Bullet::Bullet(sf::Texture bullet_tex) : Entity(bullet_tex) {}
 
-Bullet::Bullet(sf::Vector2 in_position, sf::Vector2 in_velocity) {
+Bullet::Bullet(sf::Texture bullet_tex, sf::Vector2f in_position, sf::Vector2f in_velocity) {
 	position = in_position;
-	get_velocity=in_velocity;
+	velocity = in_velocity;
 }
 
 Bullet::Bullet(Player& player) : Entity() {
