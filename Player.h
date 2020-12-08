@@ -12,4 +12,5 @@ public:
 	Player();
 	Player(sf::Texture player_tex);
 	Player(sf::Texture player_tex, sf::Vector2f in_position);
+	void input();													// will handle movement and rotation of both sprite and object
 };

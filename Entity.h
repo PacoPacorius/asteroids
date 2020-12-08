@@ -12,10 +12,10 @@ protected:
 	sf::Vector2f position;		// (x, y) position coordinates of the entity
 	sf::Vector2f velocity;		// (x, y) velocity of the entity
 	sf::Vector2f acceleration;		// (x, y) acceleration of the entity
-
-private:
 	sf::Texture tex;
 	sf::Sprite spr;
+
+private:
 
 public:
 	Entity();
@@ -31,5 +31,7 @@ public:
 	void set_velocity(sf::Vector2f in_velocity) { velocity = in_velocity; }
 	void set_acceleration(sf::Vector2f in_acceleration) { acceleration = in_acceleration; }
 	void set_tex(sf::Texture in_tex) { tex = in_tex; }
+
+	void update();
 };
 

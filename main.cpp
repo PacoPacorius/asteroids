@@ -23,6 +23,9 @@ int main() {
             if (event.type == sf::Event::Closed)
                 window.close();
         }
+
+        ship.input();
+
         window.clear();
 
         window.draw(ship.get_spr());

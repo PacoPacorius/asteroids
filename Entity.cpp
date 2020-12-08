@@ -25,3 +25,7 @@ Entity::Entity(sf::Texture in_tex, sf::Vector2f in_position) {
 	spr.setTexture(tex);
 	spr.setPosition(position);
 }
+
+void Entity::update() {
+
+}
