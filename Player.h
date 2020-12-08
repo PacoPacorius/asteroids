@@ -1,5 +1,5 @@
 #pragma once
-#include <SFML/Graphics.hpp>
+//#include <SFML/Graphics.hpp>
 #include "Entity.h"
 
 // main thing is orientation, we can get the rotation of the player from its sprite
