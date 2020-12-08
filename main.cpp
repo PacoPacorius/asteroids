@@ -1,11 +1,16 @@
 #include <SFML/Graphics.hpp>
 #include "Entity.h"
+#include "Player.h"
 
 
 int main() {
 
+    sf::Texture tex_ship;
+    tex_ship.loadFromFile("Assets/Ship.png");
 
-	sf::Window window(sf::VideoMode(800, 600), "THE FEELING YOU GET FROM A COCA COLA :("); 
+    Player ship(tex_ship, sf::Vector2f(50.f, 50.f));
+    
+	sf::RenderWindow window(sf::VideoMode(1024, 768), "THE FEELING YOU GET FROM A COCA COLA :("); 
     
     while (window.isOpen())
     {
@@ -19,6 +24,11 @@ int main() {
         }
     }
 
+    window.clear();
+
+    //window.draw(ship.get_spr());
+
+    window.display();
   
 
 	return 0;

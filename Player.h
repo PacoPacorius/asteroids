@@ -1,4 +1,5 @@
 #pragma once
+#include <SFML/Graphics.hpp>
 #include "Entity.h"
 
 // main thing is orientation, we can get the rotation of the player from its sprite
@@ -10,5 +11,5 @@ private:
 public:
 	Player();
 	Player(sf::Texture player_tex);
-	Player(sf::Texture player_tex, sf::Vector2f in_position, sf::Vector2f in_velocity);
+	Player(sf::Texture player_tex, sf::Vector2f in_position);
 };
