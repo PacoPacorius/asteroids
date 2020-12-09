@@ -9,11 +9,15 @@ int main() {
     window.setFramerateLimit(50);
 
     sf::Texture tex_ship;
+    sf::Texture tex_asteroid;
     if (!tex_ship.loadFromFile("Assets/Ship.png")) std::cout << "Hi" << std::endl;
+    if (!tex_asteroid.loadFromFile("Assets/Asteroid.png")) std::cout << "Hi" << std::endl;
 
     Game game;
 
     game.get_ship().set_tex(tex_ship);
+
+    Asteroid testAsteroid(tex_asteroid);
     
     sf::Clock clock;
     //sf::Time current_time = clock.getElapsedTime();  // time elapsed
@@ -36,6 +40,7 @@ int main() {
         window.clear();
 
         window.draw(game.get_ship().get_spr());
+        window.draw(testAsteroid.get_spr());
 
         window.display();
     }
