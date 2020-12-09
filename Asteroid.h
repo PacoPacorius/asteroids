@@ -2,10 +2,14 @@
 #include "Entity.h"
 
 class Asteroid : public Entity {
-public:
-
 private:
+	sf::CircleShape collision_circle;
+
+public:
 	Asteroid();
 	Asteroid(sf::Texture tex);
 	Asteroid(sf::Texture tex, sf::Vector2f in_position, sf::Vector2f in_velocity);
+
+	sf::CircleShape get_collision_circle() { return collision_circle; }
+
 };
