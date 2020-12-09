@@ -21,5 +21,5 @@ public:
 	std::vector<Asteroid>& get_asteroids() { return asteroids; };
 	std::vector<Bullet>& get_bullets() { return bullets; };
 
-	void update();
+	void update(float dt);
 };
