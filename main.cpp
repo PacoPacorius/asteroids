@@ -1,8 +1,8 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
-#include "Entity.h"
-#include "Player.h"
+#include <vector>
 
+#include "Game.h"
 
 int main() {
 	sf::RenderWindow window(sf::VideoMode(1024, 768), "THE FEELING YOU GET FROM A COCA COLA :("); 
