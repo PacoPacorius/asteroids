@@ -10,7 +10,9 @@ int main() {
     sf::Texture tex_ship;
     if (!tex_ship.loadFromFile("Assets/Ship.png")) std::cout << "Hi" << std::endl;
 
-    Player ship(tex_ship, sf::Vector2f(250.f, 300.f));
+    Game game;
+
+    game.get_ship().set_tex(tex_ship);
     
     
     while (window.isOpen())
@@ -24,11 +26,11 @@ int main() {
                 window.close();
         }
 
-        ship.input();
+        game.update();
 
         window.clear();
 
-        window.draw(ship.get_spr());
+        window.draw(game.get_ship().get_spr());
 
         window.display();
     }
