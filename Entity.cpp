@@ -26,6 +26,8 @@ Entity::Entity(sf::Texture in_tex, sf::Vector2f in_position) {
 	spr.setPosition(position);
 }
 
-void Entity::update() {
-
+void Entity::update(float deltatime) {
+	velocity += acceleration * deltatime;
+	position += velocity * deltatime;
+	spr.setPosition(position);
 }

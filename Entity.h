@@ -32,6 +32,6 @@ public:
 	void set_acceleration(sf::Vector2f in_acceleration) { acceleration = in_acceleration; }
 	void set_tex(sf::Texture in_tex) { tex = in_tex; spr.setTexture(tex); }
 
-	void update();
+	void update(float deltatime);
 };
 
