@@ -7,10 +7,12 @@
 class Player : public Entity {
 private:
 	float rotation;
+	const float TERMINAL_VELOCITY = 20.f;
+	const float ACCELERATION = .5f;
 
 public:
 	Player();
 	Player(sf::Texture player_tex);
 	Player(sf::Texture player_tex, sf::Vector2f in_position);
-	void input();													// will handle movement and rotation of both sprite and object
+	void input(float dt);													// will handle movement and rotation of both sprite and object
 };
