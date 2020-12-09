@@ -2,7 +2,7 @@
 
 Bullet::Bullet() : Entity() {}
 Bullet::Bullet(sf::Texture bullet_tex) : Entity(bullet_tex) {
-	collision_circle.setRadius(tex.getSize().x / 2);
+	collision_circle.setRadius(tex.getSize().x / 2.0f);
 }
 
 Bullet::Bullet(sf::Texture bullet_tex, sf::Vector2f in_position, sf::Vector2f in_velocity) {
