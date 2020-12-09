@@ -35,12 +35,12 @@ int main() {
         }
         dt = clock.restart();
 
-        game.update(dt.asSeconds() * 10);
+        game.update(dt.asSeconds());
 
         window.clear();
 
         window.draw(game.get_ship().get_spr());
-        window.draw(testAsteroid.get_spr());
+        //window.draw(testAsteroid.get_spr());
 
         window.display();
     }
