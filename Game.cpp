@@ -20,3 +20,9 @@ void Game::update(){
 	ship.input();
 
 }
+
+void Game::create_asteroid(sf::Texture tex) {
+	Asteroid asteroid(tex);
+	asteroid.set_tex(tex);
+	asteroids.push_back(asteroid);
+}
