@@ -14,7 +14,10 @@ int main() {
 
     game.get_ship().set_tex(tex_ship);
     
-    
+    sf::Clock clock;
+    sf::Time current_time = clock.getElapsedTime();  // time elapsed
+    sf::Time last_time = clock.getElapsedTime();     // time elapsed before this loop
+    sf::Time dt = clock.getElapsedTime();            // time of this loop only
     while (window.isOpen())
     {
         // check all the window's events that were triggered since the last iteration of the loop
