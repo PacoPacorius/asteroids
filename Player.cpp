@@ -7,23 +7,21 @@ Player::Player(sf::Texture player_tex, sf::Vector2f in_position) : Entity(player
 	rotation = 0.f;
 }
 
-void Player::input() {
+void Player::input(float dt) {
 
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
-		spr.move(sf::Vector2f(-1.f, 0.f));
-		position = spr.getPosition();
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && velocity.x > -TERMINAL_VELOCITY) {
+		velocity += sf::Vector2f(-ACCELERATION, 0.f);
 	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
-		spr.move(sf::Vector2f(1.f, 0.f));
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && velocity.x < TERMINAL_VELOCITY) {
+		velocity += sf::Vector2f(ACCELERATION, 0.f);
 	}
-		position = spr.getPosition();
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
-		spr.move(sf::Vector2f(0.f, -1.f));
-		position = spr.getPosition();
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && velocity.y > -TERMINAL_VELOCITY) {
+		velocity += sf::Vector2f(0.f, -ACCELERATION);
 	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
-		spr.move(sf::Vector2f(0.f, 1.f));
-		position = spr.getPosition();
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && velocity.y < TERMINAL_VELOCITY) {
+		velocity += sf::Vector2f(0.f, ACCELERATION);
 	}
+		spr.move(dt * velocity);
+		position = spr.getPosition();
 }
