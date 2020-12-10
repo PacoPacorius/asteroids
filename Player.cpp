@@ -20,6 +20,9 @@ float degrees_to_radians(float degrees) {
 }
 
 void Player::movement(float dt) {
+	//SORRY i added this here because of the dt
+	firing_timer += dt;
+
 	float absolute_velocity = 0;																// the total velocity of the ship at any given time
 	float radians = 0.f;
 

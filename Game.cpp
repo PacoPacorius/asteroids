@@ -23,14 +23,22 @@ void Game::update(float dt){
 	for (int i = 0; i < asteroids.size(); i++) { 
 		asteroids[i].update(dt); 	
 	}
+	for (int i = 0; i < bullets.size(); i++) {
+		bullets[i].update(dt);
+	}
 
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
+		if ( ship.can_fire() ) {
+			Bullet bullet(textures.bullet, ship);
+			bullets.push_back(bullet);
+		}
+	}
 
 	//deletion of out-of-bounds objects
-
-	for (int i = 0; i < asteroids.size(); i++) {
+	for (unsigned int i = 0; i < asteroids.size(); i++) {
 		if (is_out_of_bounds(asteroids[i])) { asteroids.erase(asteroids.begin() + i); std::cout << "deleted asteroid" << std::endl; }
 	}
-	for (int i = 0; i < bullets.size(); i++) {
+	for (unsigned int i = 0; i < bullets.size(); i++) {
 		if (is_out_of_bounds(bullets[i])) { bullets.erase(bullets.begin() + i); std::cout << "deleted bullet" << std::endl; }
 	}
 
@@ -39,7 +47,7 @@ void Game::update(float dt){
 void Game::create_asteroid(unsigned int number) {
 
 	//create asteroid at random place outside screen
-	for (int i = 0; i < number; i++) {
+	for (unsigned int i = 0; i < number; i++) {
 		Asteroid asteroid(textures.asteroid);
 
 		asteroid.set_velocity({ (std::rand() % 1000) / 10.f, (std::rand() % 1000) / 10.f });
