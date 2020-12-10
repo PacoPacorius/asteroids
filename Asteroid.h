@@ -12,6 +12,6 @@ public:
 
 	void update(float dt);
 
-	sf::CircleShape get_collision_circle() { return collision_circle; }
+	sf::CircleShape& get_collision_circle() { return collision_circle; }
 
 };

@@ -16,7 +16,7 @@ private:
 
 
 	bool is_out_of_bounds(const Entity entity);
-
+	bool are_colliding(sf::CircleShape& c1, sf::CircleShape& c2);
 
 public:
 	Player ship;
