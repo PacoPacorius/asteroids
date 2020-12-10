@@ -7,14 +7,12 @@
 
 int main() {
 	sf::RenderWindow window(sf::VideoMode(1024, 768), "THE FEELING YOU GET FROM A COCA COLA :("); 
-    window.setFramerateLimit(50);
+    window.setFramerateLimit(100);
 
     Game game;
 
 
-    game.create_asteroid();
-    game.create_asteroid();
-    game.create_asteroid();
+    game.create_asteroid(5);
  
     
 
@@ -42,7 +40,9 @@ int main() {
         for (int i = 0; i < game.get_asteroids().size(); i++) {
             window.draw(game.get_asteroids()[i].get_spr());
         }
-
+        for (int i = 0; i < game.get_bullets().size(); i++) {
+            window.draw(game.get_bullets()[i].get_spr());
+        }
 
         window.display();
     }

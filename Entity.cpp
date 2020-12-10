@@ -22,6 +22,6 @@ Entity::Entity(sf::Texture& in_tex, sf::Vector2f in_position) {
 	spr.setPosition(position);
 }
 
-void Entity::update() {
-
+void Entity::update(float dt) {
+	set_position(position + velocity * dt);
 }

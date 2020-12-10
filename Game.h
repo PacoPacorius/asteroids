@@ -15,6 +15,9 @@ private:
 	std::vector<Bullet> bullets;
 
 
+	bool is_out_of_bounds(const Entity entity);
+
+
 public:
 	Player ship;
 	Game();
@@ -23,7 +26,7 @@ public:
 	std::vector<Bullet> get_bullets() { return bullets; };
 	Textures& get_textures() { return textures; };
 
-	void create_asteroid();
+	void create_asteroid(unsigned int number);
 	void update(float dt);
 
 
