@@ -42,6 +42,7 @@ int main() {
         }
         for (int i = 0; i < game.get_bullets().size(); i++) {
             window.draw(game.get_bullets()[i].get_spr());
+            window.draw(game.get_bullets()[i].get_collision_circle());
         }
 
         window.display();
