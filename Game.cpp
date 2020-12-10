@@ -50,7 +50,7 @@ void Game::create_asteroid(unsigned int number) {
 	for (unsigned int i = 0; i < number; i++) {
 		Asteroid asteroid(textures.asteroid);
 
-		asteroid.set_velocity({ (std::rand() % 1000) / 10.f, (std::rand() % 1000) / 10.f });
+		asteroid.set_velocity({ (std::rand() % 1000) / 10.f, (std::rand() % 1000) / 10.f });		// sets a random velocity for each of the asteroids
 		asteroids.push_back(asteroid);
 	}
 

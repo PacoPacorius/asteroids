@@ -11,7 +11,7 @@ private:
 	const float TERMINAL_VELOCITY = 20.f;
 	const float ACCELERATION = 2.f;
 	const float ROTATION_SPEED = 5.f;
-	const float FIRING_COOLDOWN = 2.0f;
+	const float FIRING_COOLDOWN = 2.f;
 	
 	sf::CircleShape collision_circle;
 

@@ -14,11 +14,11 @@ int main() {
 
     game.create_asteroid(5);
  
-    
-
 
     sf::Clock clock;
-    sf::Time dt = clock.getElapsedTime();            // time of this loop only
+    sf::Time dt;            // time of this loop only
+
+
     while (window.isOpen())
     {
         // check all the window's events that were triggered since the last iteration of the loop
