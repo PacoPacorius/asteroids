@@ -15,13 +15,11 @@ int main() {
 
     Game game;
 
-    game.get_ship().set_tex(tex_ship);
+    game.get_ship().set_tex(tex_ship);              // this probs should be in the game (or player?) constructor buuuuut whatevs
 
     Asteroid testAsteroid(tex_asteroid);
     
     sf::Clock clock;
-    //sf::Time current_time = clock.getElapsedTime();  // time elapsed
-    //sf::Time last_time = clock.getElapsedTime();     // time elapsed before this loop
     sf::Time dt = clock.getElapsedTime();            // time of this loop only
     while (window.isOpen())
     {

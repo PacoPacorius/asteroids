@@ -1,6 +1,11 @@
+#include <cmath>
 #include "Player.h"
 
-Player::Player() : Entity() { rotation = 0.f; }
+Player::Player() : Entity() { 
+	rotation = 0.f;
+	spr.setOrigin(16.f, 16.f);
+	spr.setPosition(50.f, 50.f);
+}
 Player::Player(sf::Texture player_tex) : Entity(player_tex) { rotation = 0.f; }
 
 Player::Player(sf::Texture player_tex, sf::Vector2f in_position) : Entity(player_tex, in_position) {
@@ -11,6 +16,7 @@ void Player::movement(float dt) {
 
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) && velocity.x > -TERMINAL_VELOCITY) {
+		//spr.rotate(-ROTATION_SPEED);
 		velocity += sf::Vector2f(-ACCELERATION * dt, 0.f);
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right) && velocity.x < TERMINAL_VELOCITY) {
