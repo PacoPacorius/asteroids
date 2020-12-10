@@ -10,6 +10,8 @@ Bullet::Bullet(sf::Texture& bullet_tex) : Entity(bullet_tex) {
 	collision_circle.setPosition(position);
 	collision_circle.setRadius(bullet_tex.getSize().x / 2.0f);
 	collision_circle.setOrigin(spr.getOrigin());
+	collision_circle.setFillColor(sf::Color(50, 50, 255, 100));
+
 }
 
 Bullet::Bullet(sf::Texture& bullet_tex, sf::Vector2f in_position, sf::Vector2f in_velocity) {
@@ -21,6 +23,8 @@ Bullet::Bullet(sf::Texture& bullet_tex, sf::Vector2f in_position, sf::Vector2f i
 	collision_circle.setPosition(position);
 	collision_circle.setRadius(bullet_tex.getSize().x / 2.0f);
 	collision_circle.setOrigin(spr.getOrigin());
+	collision_circle.setFillColor(sf::Color(50, 50, 255, 100));
+
 }
 
 Bullet::Bullet(sf::Texture& bullet_tex, Player& player) : Entity(bullet_tex) {
@@ -34,6 +38,8 @@ Bullet::Bullet(sf::Texture& bullet_tex, Player& player) : Entity(bullet_tex) {
 	collision_circle.setPosition(position);
 	collision_circle.setRadius(bullet_tex.getSize().x / 2.0f);
 	collision_circle.setOrigin(spr.getOrigin());
+	collision_circle.setFillColor(sf::Color(50, 50, 255, 100));
+
 }
 
 void Bullet::update(float dt) {
