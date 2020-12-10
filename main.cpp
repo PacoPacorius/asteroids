@@ -40,7 +40,9 @@ int main() {
         for (int i = 0; i < game.get_asteroids().size(); i++) {
             window.draw(game.get_asteroids()[i].get_spr());
         }
-
+        for (int i = 0; i < game.get_bullets().size(); i++) {
+            window.draw(game.get_bullets()[i].get_spr());
+        }
 
         window.display();
     }

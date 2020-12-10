@@ -25,11 +25,13 @@ void Game::update(float dt){
 	}
 
 
+	//deletion of out-of-bounds objects
+
 	for (int i = 0; i < asteroids.size(); i++) {
-		if (is_out_of_bounds(asteroids[i])) { asteroids.erase(asteroids.begin() + i); std::cout << "boop" << std::endl; }
+		if (is_out_of_bounds(asteroids[i])) { asteroids.erase(asteroids.begin() + i); std::cout << "deleted asteroid" << std::endl; }
 	}
 	for (int i = 0; i < bullets.size(); i++) {
-		if (is_out_of_bounds(bullets[i])) { bullets.erase(bullets.begin() + i); std::cout << "boop" << std::endl; }
+		if (is_out_of_bounds(bullets[i])) { bullets.erase(bullets.begin() + i); std::cout << "deleted bullet" << std::endl; }
 	}
 
 }
