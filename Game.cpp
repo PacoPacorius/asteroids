@@ -15,7 +15,6 @@ void Game::update(float dt){
 		ship.set_position(sf::Vector2f(ship.get_position().x, -20));
 	else if (ship.get_position().y < -20)
 		ship.set_position(sf::Vector2f(ship.get_position().x, (int)WINDOW_HEIGHT + 20));
-	std::cout << "x: " << ship.get_position().x << std::endl << "y: " << ship.get_position().y << std::endl;
 
 	ship.movement(dt * 10);		// it works better with * 10 shut up sysk
 
