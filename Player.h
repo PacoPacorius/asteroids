@@ -13,6 +13,7 @@ private:
 	const float ROTATION_SPEED = 5.f;
 	const float FIRING_COOLDOWN = 2.0f;
 	
+	sf::CircleShape collision_circle;
 
 public:
 
@@ -28,5 +29,6 @@ public:
 		else return false;
 	}
 
+	sf::CircleShape get_collision_circle() { return collision_circle; }
 
 };

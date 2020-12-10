@@ -8,6 +8,11 @@ Player::Player() : Entity() {
 	rotation = 0.f;
 	spr.setOrigin(16.f, 16.f);
 	spr.setPosition(50.f, 50.f);
+
+	collision_circle.setPosition(position);
+	collision_circle.setRadius(16.f);
+	collision_circle.setOrigin(spr.getOrigin());
+	collision_circle.setFillColor(sf::Color(50, 50, 255, 100));
 }
 Player::Player(sf::Texture& player_tex) : Entity(player_tex) { rotation = 0.f; }
 
@@ -20,6 +25,7 @@ float degrees_to_radians(float degrees) {
 }
 
 void Player::movement(float dt) {
+	collision_circle.setPosition(position);
 	//SORRY i added this here because of the dt
 	firing_timer += dt;
 

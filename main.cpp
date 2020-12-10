@@ -36,6 +36,7 @@ int main() {
         window.clear();
 
         window.draw(game.get_ship().get_spr());
+        window.draw(game.get_ship().get_collision_circle());
 
         for (int i = 0; i < game.get_asteroids().size(); i++) {
             window.draw(game.get_asteroids()[i].get_spr());
