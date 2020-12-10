@@ -2,6 +2,7 @@
 #include <iostream>
 
 Game::Game(){
+	ship.set_tex(textures.ship);
 }
 
 void Game::update(float dt){
@@ -20,8 +21,10 @@ void Game::update(float dt){
 
 }
 
-void Game::create_asteroid(sf::Texture tex) {
-	Asteroid asteroid(tex);
-	asteroid.set_tex(tex);
-	asteroids.push_back(asteroid);
+void Game::create_asteroid() {
+
+	std::unique_ptr<Asteroid> asteroid(new Asteroid(textures.asteroid));
+	asteroids.push_back(std::move(asteroid));
+	
+
 }
