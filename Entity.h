@@ -27,6 +27,6 @@ public:
 	void set_velocity(sf::Vector2f in_velocity) { velocity = in_velocity; }
 	void set_tex(sf::Texture& in_tex) { spr.setTexture(in_tex); }
 
-	void update();
+	void update(float dt);
 };
 

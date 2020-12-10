@@ -12,9 +12,7 @@ int main() {
     Game game;
 
 
-    game.create_asteroid();
-    game.create_asteroid();
-    game.create_asteroid();
+    game.create_asteroid(5);
  
     
 
