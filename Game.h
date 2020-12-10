@@ -15,6 +15,9 @@ private:
 	std::vector<Bullet> bullets;
 
 
+	bool is_out_of_bounds(const Entity entity);
+
+
 public:
 	Player ship;
 	Game();

@@ -20,7 +20,17 @@ void Game::update(float dt){
 
 	ship.movement(dt * 10);		// it works better with * 10 shut up syskAXAAXAXAXAX
 
-	for (int i = 0; i < asteroids.size(); i++) asteroids[i].update(dt);
+	for (int i = 0; i < asteroids.size(); i++) { 
+		asteroids[i].update(dt); 	
+	}
+
+
+	for (int i = 0; i < asteroids.size(); i++) {
+		if (is_out_of_bounds(asteroids[i])) { asteroids.erase(asteroids.begin() + i); std::cout << "boop" << std::endl; }
+	}
+	for (int i = 0; i < bullets.size(); i++) {
+		if (is_out_of_bounds(bullets[i])) { bullets.erase(bullets.begin() + i); std::cout << "boop" << std::endl; }
+	}
 
 }
 
@@ -35,3 +45,11 @@ void Game::create_asteroid(unsigned int number) {
 	}
 
 }
+
+bool Game::is_out_of_bounds(const Entity entity) {
+
+	return (entity.get_position().x < -50 ||
+		entity.get_position().x > WINDOW_WIDTH + 50 ||
+		entity.get_position().y < -50 ||
+		entity.get_position().y > WINDOW_HEIGHT + 50);
+	}
