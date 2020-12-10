@@ -2,6 +2,7 @@
 #include "SFML/Graphics.hpp"
 class Textures
 {
+	
 public:
 	sf::Texture ship;
 	sf::Texture asteroid;

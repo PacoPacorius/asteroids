@@ -1,6 +1,6 @@
 #include "Game.h"
 #include <iostream>
-
+	
 Game::Game(){
 	ship.set_tex(textures.ship);
 }
@@ -23,8 +23,8 @@ void Game::update(float dt){
 
 void Game::create_asteroid() {
 
-	std::unique_ptr<Asteroid> asteroid(new Asteroid(textures.asteroid));
-	asteroids.push_back(std::move(asteroid));
+	Asteroid asteroid(textures.asteroid);
+	asteroids.push_back(asteroid);
 	
 
 }
