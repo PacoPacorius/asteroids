@@ -2,23 +2,23 @@
 #include <iostream>
 #include <vector>
 
+#include "Textures.h"
 #include "Game.h"
 
 int main() {
 	sf::RenderWindow window(sf::VideoMode(1024, 768), "THE FEELING YOU GET FROM A COCA COLA :("); 
     window.setFramerateLimit(50);
 
-    sf::Texture tex_ship;
-    sf::Texture tex_asteroid;
-    if (!tex_ship.loadFromFile("Assets/Ship.png")) std::cout << "Hi" << std::endl;
-    if (!tex_asteroid.loadFromFile("Assets/Asteroid.png")) std::cout << "Hi" << std::endl;
-
     Game game;
 
-    game.get_ship().set_tex(tex_ship);              // this probs should be in the game (or player?) constructor buuuuut whatevs
 
-    Asteroid testAsteroid(tex_asteroid);
+    game.create_asteroid();
+    game.create_asteroid();
+    game.create_asteroid();
+ 
     
+
+
     sf::Clock clock;
     sf::Time dt = clock.getElapsedTime();            // time of this loop only
     while (window.isOpen())
@@ -38,7 +38,11 @@ int main() {
         window.clear();
 
         window.draw(game.get_ship().get_spr());
-        //window.draw(testAsteroid.get_spr());
+
+        for (int i = 0; i < game.get_asteroids().size(); i++) {
+            window.draw(game.get_asteroids()[i].get_spr());
+        }
+
 
         window.display();
     }
