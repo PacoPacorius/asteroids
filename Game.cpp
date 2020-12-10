@@ -43,6 +43,22 @@ void Game::update(float dt) {
 		for (unsigned int i = 0; i < bullets.size(); i++) {
 			if (are_colliding(bullets[i].get_collision_circle(), asteroids[j].get_collision_circle())) {
 				//on asteroid-bullet collision
+				//sf::Vector2f new_velocity = { bullets[i].get_velocity().y/10.f, -bullets[i].get_velocity().x/10.f };
+				if (asteroids[j].get_scale() > 0.4) {
+					sf::Vector2f v1 = { ((rand() % 1000) - 500) / 10.f, ((rand() % 1000) - 500) / 10.f };
+					sf::Vector2f v2 = { ((rand() % 1000) - 500) / 10.f, ((rand() % 1000) - 500) / 10.f };
+
+					Asteroid asteroid1(textures.asteroid, asteroids[j].get_position(), v1);
+					Asteroid asteroid2(textures.asteroid, asteroids[j].get_position(), v2);
+					asteroid1.set_scale(asteroids[j].get_scale() * 0.5);
+					asteroid2.set_scale(asteroids[j].get_scale() * 0.5);
+					asteroids.push_back(asteroid1);
+					asteroids.push_back(asteroid2);
+				}
+
+				asteroids.erase(asteroids.begin() + j);
+				bullets.erase(bullets.begin() + i);
+
 			}
 
 		}

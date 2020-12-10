@@ -7,7 +7,7 @@
 
 int main() {
 	sf::RenderWindow window(sf::VideoMode(1024, 768), "THE FEELING YOU GET FROM A COCA COLA :("); 
-    window.setFramerateLimit(100);
+    window.setFramerateLimit(500);
 
     Game game;
 
