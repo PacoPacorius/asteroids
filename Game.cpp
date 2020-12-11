@@ -3,9 +3,21 @@
 #include <stdlib.h>
 
 Game::Game() {
+	player_lives = 6;
+	sf::Sprite live_sprite;
+	live_sprite.setTexture(textures.ship);
+	live_sprite.setPosition(20, 60);
+	live_sprite.setScale(0.7f, 0.7f);
+	player_lives_sprites.push_back(live_sprite);
+	for (unsigned int i = 0; i < player_lives; i++) {
+		live_sprite.move(30, 0);
+		player_lives_sprites.push_back(live_sprite);
+	}
+
+
 	ship.set_tex(textures.ship);
 	player_score_text.setFont(textures.font);
-	player_score_text.setPosition(30, 40);
+	player_score_text.setPosition(20, 30);
 	player_score_text.setScale(0.7, 0.7);
 }
 
@@ -41,7 +53,10 @@ void Game::update(float dt) {
 	for (unsigned int j = 0; j < asteroids.size(); j++) {
 		if (are_colliding(ship.get_collision_circle(), asteroids[j].get_collision_circle())) {
 			//on asteroid-player collision
-
+			ship.set_position({ WINDOW_WIDTH / 2.f, WINDOW_HEIGHT / 2.f });
+			ship.set_velocity({ 0.f, 0.f });
+			player_lives--;
+			player_lives_sprites.pop_back();
 		}
 		for (unsigned int i = 0; i < bullets.size(); i++) {
 			if (are_colliding(bullets[i].get_collision_circle(), asteroids[j].get_collision_circle())) {
