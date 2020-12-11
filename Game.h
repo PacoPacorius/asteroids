@@ -5,6 +5,10 @@
 #include "Asteroid.h"
 #include "Bullet.h"
 
+enum Sides {	// ante sysk s kanw tin xari k ftiaxnw enum
+	LEFT = 0, UP, RIGHT, DOWN
+};
+
 class Game {
 private:
 	Textures textures;

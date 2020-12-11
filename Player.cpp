@@ -26,7 +26,7 @@ float degrees_to_radians(float degrees) {
 
 void Player::movement(float dt) {
 	collision_circle.setPosition(position);
-	//SORRY i added this here because of the dt
+	//SORRY i added this here because of the dt // no prob my dude its all good
 	firing_timer += dt;
 
 	float absolute_velocity = 0;																// the total velocity of the ship at any given time
