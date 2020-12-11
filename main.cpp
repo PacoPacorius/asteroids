@@ -7,12 +7,13 @@
 
 int main() {
 	sf::RenderWindow window(sf::VideoMode(1024, 768), "THE FEELING YOU GET FROM A COCA COLA :("); 
-    window.setFramerateLimit(100);
+    window.setFramerateLimit(500);
 
     Game game;
 
 
-    //game.create_asteroid(5);
+    game.create_asteroid(3, 3.f);
+
  
 
     sf::Clock clock;
@@ -36,17 +37,22 @@ int main() {
         window.clear();
 
         window.draw(game.get_ship().get_spr());
-        window.draw(game.get_ship().get_collision_circle());
+       // window.draw(game.get_ship().get_collision_circle());
 
         for (int i = 0; i < game.get_asteroids().size(); i++) {
             window.draw(game.get_asteroids()[i].get_spr());
-            window.draw(game.get_asteroids()[i].get_collision_circle());
+         //   window.draw(game.get_asteroids()[i].get_collision_circle());
 
         }
         for (int i = 0; i < game.get_bullets().size(); i++) {
             window.draw(game.get_bullets()[i].get_spr());
-            window.draw(game.get_bullets()[i].get_collision_circle());
+           // window.draw(game.get_bullets()[i].get_collision_circle());
         }
+
+        for (int i = 0; i < game.get_player_lives_sprites().size(); i++) window.draw(game.get_player_lives_sprites()[i]);
+
+
+        window.draw(game.get_player_score_text());
 
         window.display();
     }
