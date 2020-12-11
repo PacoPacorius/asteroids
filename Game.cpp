@@ -1,6 +1,6 @@
 #define _USE_MATH_DEFINES
 
-#define MAX_ASTEROIDS 21
+#define MAX_ASTEROIDS 11
 
 #include "Game.h"
 #include <cmath>
@@ -118,7 +118,7 @@ float degrees_to_radians(float degrees); /*{
 void Game::create_asteroid(unsigned int number_of_asteroids, float scale) {
 
 	//create asteroid at random place outside screen
-	for (unsigned int i = 0; i < number; i++) {
+	for (unsigned int i = 0; i < number_of_asteroids; i++) {
 		Asteroid asteroid(textures.get_random_asteroid_texture());
 		asteroid.set_scale(scale);
 
