@@ -50,7 +50,9 @@ int main() {
 
         window.display();
 
-        if (game.get_player_lives_sprites().size() < 1) return 0;
+        if (game.get_player_lives_sprites().size() < 1) {
+            std::cout << "hi" << std::endl;
+        }
     }
 
 	return 0;
