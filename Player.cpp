@@ -33,9 +33,9 @@ void Player::movement(float dt) {
 
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) 
-		spr.rotate(-ROTATION_SPEED);
+		spr.rotate(-ROTATION_SPEED * dt);
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
-		spr.rotate(ROTATION_SPEED);
+		spr.rotate(ROTATION_SPEED * dt);
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up) && ACCELERATION * dt < TERMINAL_VELOCITY)
 		absolute_velocity = ACCELERATION * dt;
 

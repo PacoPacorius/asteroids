@@ -13,7 +13,7 @@ Game::Game() {
 
 	ship.set_position({ float(WINDOW_WIDTH) / 2, float(WINDOW_HEIGHT) / 2 });
   
-	player_lives = 6;
+	player_lives = 1;
 	sf::Sprite live_sprite;
 	live_sprite.setTexture(textures.ship);
 	live_sprite.setPosition(20, 60);
