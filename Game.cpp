@@ -44,19 +44,20 @@ void Game::update(float dt) {
 			if (are_colliding(bullets[i].get_collision_circle(), asteroids[j].get_collision_circle())) {
 				//on asteroid-bullet collision
 				//sf::Vector2f new_velocity = { bullets[i].get_velocity().y/10.f, -bullets[i].get_velocity().x/10.f };
-				if (asteroids[j].get_scale() > 0.4) {
-					sf::Vector2f v1 = { ((rand() % 1000) - 500) / 10.f, ((rand() % 1000) - 500) / 10.f };
-					sf::Vector2f v2 = { ((rand() % 1000) - 500) / 10.f, ((rand() % 1000) - 500) / 10.f };
+				if (asteroids[j].get_scale() > 0.8) {
+					sf::Vector2f v1 = { ((rand() % 1000) - 500) / 5.f, ((rand() % 1000) - 500) / 5.f };
+					sf::Vector2f v2 = { ((rand() % 1000) - 500) / 5.f, ((rand() % 1000) - 500) / 5.f };
 
 					Asteroid asteroid1(textures.asteroid, asteroids[j].get_position(), v1);
 					Asteroid asteroid2(textures.asteroid, asteroids[j].get_position(), v2);
-					asteroid1.set_scale(asteroids[j].get_scale() * 0.5);
-					asteroid2.set_scale(asteroids[j].get_scale() * 0.5);
+					asteroid1.set_scale(asteroids[j].get_scale() * 0.7 * (1.f - ((rand() % 3) / 10.f)));
+					asteroid2.set_scale(asteroids[j].get_scale() * 0.7 * (1.f - ((rand() % 3) / 10.f)));
 					asteroids.push_back(asteroid1);
 					asteroids.push_back(asteroid2);
 				}
 
 				asteroids.erase(asteroids.begin() + j);
+				if (j == asteroids.size()) break;
 				bullets.erase(bullets.begin() + i);
 
 			}
@@ -74,12 +75,12 @@ void Game::update(float dt) {
 
 }
 
-void Game::create_asteroid(unsigned int number) {
+void Game::create_asteroid(unsigned int number_of_asteroids, float scale) {
 
 	//create asteroid at random place outside screen
-	for (unsigned int i = 0; i < number; i++) {
+	for (unsigned int i = 0; i < number_of_asteroids; i++) {
 		Asteroid asteroid(textures.asteroid);
-
+		asteroid.set_scale(scale);
 		asteroid.set_velocity({ (std::rand() % 1000) / 10.f, (std::rand() % 1000) / 10.f });
 		asteroids.push_back(asteroid);
 	}
@@ -95,7 +96,7 @@ bool Game::is_out_of_bounds(const Entity entity) {
 }
 
 bool Game::are_colliding(sf::CircleShape& c1, sf::CircleShape& c2) {
-	float R = c1.getRadius() + c2.getRadius();
+	float R = c1.getRadius()*c1.getScale().x + c2.getRadius()*c2.getScale().y;
 	
 	sf::Vector2f P = c1.getPosition() - c2.getPosition();
 	float P_length_squared = P.x * P.x + P.y * P.y;

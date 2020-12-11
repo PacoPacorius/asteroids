@@ -4,6 +4,7 @@
 class Asteroid : public Entity {
 private:
 	sf::CircleShape collision_circle;
+	float rotation_speed;
 
 public:
 	Asteroid();

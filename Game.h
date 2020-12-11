@@ -26,7 +26,7 @@ public:
 	std::vector<Bullet> get_bullets() { return bullets; };
 	Textures& get_textures() { return textures; };
 
-	void create_asteroid(unsigned int number);
+	void create_asteroid(unsigned int number_of_asteroids, float scale = 1.f);
 	void update(float dt);
 
 
