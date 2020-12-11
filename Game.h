@@ -11,9 +11,11 @@ private:
 	const int WINDOW_WIDTH = 1024;
 	const int WINDOW_HEIGHT = 768;
 
+	unsigned int player_score;
+	sf::Text player_score_text;
+
 	std::vector<Asteroid> asteroids;
 	std::vector<Bullet> bullets;
-
 
 	bool is_out_of_bounds(const Entity entity);
 	bool are_colliding(sf::CircleShape& c1, sf::CircleShape& c2);
@@ -25,7 +27,7 @@ public:
 	std::vector<Asteroid> get_asteroids() { return asteroids; };
 	std::vector<Bullet> get_bullets() { return bullets; };
 	Textures& get_textures() { return textures; };
-
+	sf::Text& get_player_score_text() { return player_score_text; }
 	void create_asteroid(unsigned int number_of_asteroids, float scale = 1.f);
 	void update(float dt);
 

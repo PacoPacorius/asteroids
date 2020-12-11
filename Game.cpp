@@ -4,6 +4,9 @@
 
 Game::Game() {
 	ship.set_tex(textures.ship);
+	player_score_text.setFont(textures.font);
+	player_score_text.setPosition(30, 40);
+	player_score_text.setScale(0.7, 0.7);
 }
 
 void Game::update(float dt) {
@@ -56,6 +59,7 @@ void Game::update(float dt) {
 					asteroids.push_back(asteroid2);
 				}
 
+				player_score += 20;
 				asteroids.erase(asteroids.begin() + j);
 				if (j == asteroids.size()) break;
 				bullets.erase(bullets.begin() + i);
@@ -64,6 +68,7 @@ void Game::update(float dt) {
 
 		}
 	}
+	player_score_text.setString(std::to_string(player_score));
 
 	//deletion of out-of-bounds objects
 	for (unsigned int i = 0; i < asteroids.size(); i++) {

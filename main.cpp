@@ -48,6 +48,8 @@ int main() {
            // window.draw(game.get_bullets()[i].get_collision_circle());
         }
 
+        window.draw(game.get_player_score_text());
+
         window.display();
     }
 

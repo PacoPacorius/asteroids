@@ -16,6 +16,7 @@ public:
 	sf::Texture asteroid;
 	sf::Texture bullet;
 	std::vector<sf::Texture> asteroid_textures;
+	sf::Font font;
 
 	Textures() {
 		load_texture(ship, "Assets/Ship.png");
@@ -36,6 +37,8 @@ public:
 			asteroid_textures.push_back(asteroid_texture3);
 			asteroid_textures.push_back(asteroid_texture4);
 			asteroid_textures.push_back(asteroid_texture5);
+
+			font.loadFromFile("Assets/PixelFJVerdana12pt.ttf");
 	}
 
 	sf::Texture& get_random_asteroid_texture() { return asteroid_textures[rand() % asteroid_textures.size()]; }
