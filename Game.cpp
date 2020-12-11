@@ -94,26 +94,26 @@ void Game::create_asteroid(unsigned int number) {
 		*/		
 
 		float temp_x, temp_y;
-		float radians, degrees, absolute_velocity = std::rand() % 1000 / 10.f;
+		float radians, degrees, absolute_velocity = std::rand() % 900 / 10.f + 10.f;
 		/*int temp_x = rand() % 29 + 21;
 		int temp_y = rand() % 29 + 21;*/
 		Sides side = Sides(rand() % 4);		// pick a random side
-
+		//side = UP;
 		switch (side) {
 		case LEFT:
 			temp_x = (-1) * (rand() % 29 + 21);
 			temp_y = rand() % (WINDOW_HEIGHT + 20 + 49 + 1) - 49;
-			degrees = rand() % (91) + 135;
+			degrees = rand() % (91) + 90 - 45;
 			break;
 		case UP:
 			temp_x = rand() % (WINDOW_WIDTH + 49 + 20 + 1) - 20;
 			temp_y = (-1) * (rand() % 29 + 21);
-			degrees = rand() % (91) + 45;
+			degrees = rand() % (91) + 180 - 45;
 			break;
 		case RIGHT:
-			temp_x = rand() % 29 + 21;
+			temp_x = rand() % 29 + 21 + WINDOW_WIDTH;
 			temp_y = rand() % (WINDOW_HEIGHT + 49 + 20 + 1) - 20;
-			degrees = rand() % (91) - 135;
+			degrees = rand() % (91) + 270 - 45;
 			break;
 		case DOWN:
 			temp_x = rand() % (WINDOW_WIDTH + 20 + 49 + 1) - 49;
@@ -122,8 +122,12 @@ void Game::create_asteroid(unsigned int number) {
 			break;
 		}
 
-		radians = degrees_to_radians(degrees);
+		/*degrees = 180 - 45;
 
+		temp_x = WINDOW_WIDTH / 2;
+		temp_y = WINDOW_HEIGHT / 2;*/
+
+		radians = degrees_to_radians(degrees);
 
 		asteroid.set_position({ temp_x, temp_y });
 		asteroid.set_velocity({ absolute_velocity * sin(radians), -absolute_velocity * cos(radians) });		// sets a random velocity for each of the asteroids
@@ -140,8 +144,10 @@ bool Game::is_out_of_bounds(const Entity entity) {
 		entity.get_position().y > WINDOW_HEIGHT + 50);
 	}
 
+// directions:
+// 0 is up
+// 90 is to the right
+// 180 is down
+// 270 is 
 
-// ups are spawned down and their direction is up
-// rights are spawned down and their velocity goes left and down
-// lefts' velocity goes left
-// downs are spawned in the correct positions, but their direction is downwards (fixed?)
+// lefts still go left?
