@@ -94,12 +94,11 @@ void Game::create_asteroid(unsigned int number) {
 		*/		
 
 		float temp_x, temp_y;
-		float radians, degrees, absolute_velocity = std::rand() % 900 / 10.f + 10.f;
-		/*int temp_x = rand() % 29 + 21;
-		int temp_y = rand() % 29 + 21;*/
+		float radians, degrees, absolute_velocity = std::rand() % 1000 / 10.f + 10.f;
+		
 		Sides side = Sides(rand() % 4);		// pick a random side
-		//side = UP;
-		switch (side) {
+
+		switch (side) {												// POSITIONAL AND ANGULAR HELL
 		case LEFT:
 			temp_x = (-1) * (rand() % 29 + 21);
 			temp_y = rand() % (WINDOW_HEIGHT + 20 + 49 + 1) - 49;
@@ -121,11 +120,6 @@ void Game::create_asteroid(unsigned int number) {
 			degrees = rand() % (91) - 45;
 			break;
 		}
-
-		/*degrees = 180 - 45;
-
-		temp_x = WINDOW_WIDTH / 2;
-		temp_y = WINDOW_HEIGHT / 2;*/
 
 		radians = degrees_to_radians(degrees);
 
