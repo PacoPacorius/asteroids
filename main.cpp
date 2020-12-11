@@ -11,14 +11,8 @@ int main() {
 
     Game game;
 
-
-    game.create_asteroid(3, 3.f);
-
- 
-
     sf::Clock clock;
     sf::Time dt;            // time of this loop only
-
 
     while (window.isOpen())
     {
@@ -55,6 +49,8 @@ int main() {
         window.draw(game.get_player_score_text());
 
         window.display();
+
+        if (game.get_player_lives_sprites().size() < 1) return 0;
     }
 
 	return 0;

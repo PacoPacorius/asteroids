@@ -1,6 +1,6 @@
 #define _USE_MATH_DEFINES
 
-#define MAX_ASTEROIDS 11
+#define MAX_ASTEROIDS 16
 
 #include "Game.h"
 #include <cmath>
@@ -10,6 +10,8 @@
 
 Game::Game() {
 	srand(time(NULL));
+
+	ship.set_position({ float(WINDOW_WIDTH) / 2, float(WINDOW_HEIGHT) / 2 });
   
 	player_lives = 6;
 	sf::Sprite live_sprite;
@@ -66,12 +68,18 @@ void Game::update(float dt) {
 			ship.set_velocity({ 0.f, 0.f });
 			player_lives--;
 			player_lives_sprites.pop_back();
+			sf::CircleShape test_for_asteroids_on_spawn(ship.get_collision_circle());
+			test_for_asteroids_on_spawn.setPosition(ship.get_position());
+			test_for_asteroids_on_spawn.setRadius(50.f);
+			for (unsigned int s = 0; s < asteroids.size(); s++) {
+				if (are_colliding(asteroids[s].get_collision_circle(), test_for_asteroids_on_spawn)) asteroids[s].set_position({ -50,-50 });
+			}
 		}
 		for (unsigned int i = 0; i < bullets.size(); i++) {
 			if (are_colliding(bullets[i].get_collision_circle(), asteroids[j].get_collision_circle())) {
 				//on asteroid-bullet collision
 				//sf::Vector2f new_velocity = { bullets[i].get_velocity().y/10.f, -bullets[i].get_velocity().x/10.f };
-				if (asteroids[j].get_scale() > 0.8) {
+				if (asteroids[j].get_scale() > 1.5f) {
 					sf::Vector2f v1 = { ((rand() % 1000) - 500) / 5.f, ((rand() % 1000) - 500) / 5.f };
 					sf::Vector2f v2 = { ((rand() % 1000) - 500) / 5.f, ((rand() % 1000) - 500) / 5.f };
 
@@ -147,10 +155,17 @@ void Game::create_asteroid(unsigned int number_of_asteroids, float scale) {
 		*												   |RIGHT|WIDTH+21 - WIDTH+49|-20 - HEIGHT+49      |
 		*												   |DOWN |-49 - WIDTH+20     |HEIGHT+21 - HEIGHT+49|
 		*												    ===============================================
+		*   directions:
+		*   0 is up
+		*   90 is to the right
+		*   180 is down
+		*   270 is to the left
+		*
 		*/		
 
+
 		float temp_x, temp_y;
-		float radians, degrees, absolute_velocity = std::rand() % 1000 / 10.f + 10.f;
+		float radians, degrees, absolute_velocity = std::rand() % 1200 / 10.f + 30.f;
 		
 		Sides side = Sides(rand() % 4);		// pick a random side
 
@@ -212,14 +227,3 @@ bool Game::are_colliding(sf::CircleShape& c1, sf::CircleShape& c2) {
 		return false;
 	}
 }
-
-
-
-// directions:
-// 0 is up
-// 90 is to the right
-// 180 is down
-// 270 is 
-
-// lefts still go left?
-

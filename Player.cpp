@@ -7,7 +7,6 @@
 Player::Player() : Entity() { 
 	rotation = 0.f;
 	spr.setOrigin(16.f, 16.f);
-	spr.setPosition(50.f, 50.f);
 
 	collision_circle.setPosition(position);
 	collision_circle.setRadius(16.f);
