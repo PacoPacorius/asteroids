@@ -1,9 +1,16 @@
+#define _USE_MATH_DEFINES
+
+#define MAX_ASTEROIDS 21
+
 #include "Game.h"
+#include <cmath>
 #include <iostream>
 #include <stdlib.h>
+#include <time.h>
 	
 Game::Game(){
 	ship.set_tex(textures.ship);
+	srand(time(NULL));
 }
 
 void Game::update(float dt){
@@ -42,7 +49,16 @@ void Game::update(float dt){
 		if (is_out_of_bounds(bullets[i])) { bullets.erase(bullets.begin() + i); std::cout << "deleted bullet" << std::endl; }
 	}
 
+	//regeneration of asteroids
+	if (asteroids.size() < MAX_ASTEROIDS) {
+		create_asteroid(MAX_ASTEROIDS - asteroids.size());
+	}
+
 }
+
+float degrees_to_radians(float degrees); /*{
+	return (degrees * M_PI) / 180;
+}*/
 
 void Game::create_asteroid(unsigned int number) {
 
@@ -77,30 +93,37 @@ void Game::create_asteroid(unsigned int number) {
 		*												    ===============================================
 		*/		
 
-		int temp_x, temp_y;
+		float temp_x, temp_y;
+		float radians, degrees, absolute_velocity = std::rand() % 1000 / 10.f;
 		/*int temp_x = rand() % 29 + 21;
 		int temp_y = rand() % 29 + 21;*/
 		Sides side = Sides(rand() % 4);		// pick a random side
 
 		switch (side) {
 		case LEFT:
-			temp_x = (-1) * rand() % 29 + 21;
+			temp_x = (-1) * (rand() % 29 + 21);
 			temp_y = rand() % (WINDOW_HEIGHT + 49 + 20 + 1) - 20;
+			degrees = rand() % (91) - 90;
 			break;
 		case UP:
-			temp_x = (WINDOW_WIDTH + 49 + 20 + 1) - 20;
+			temp_x = rand() % (WINDOW_WIDTH + 49 + 20 + 1) - 20;
 			temp_y = rand() % 29 + 21 + WINDOW_HEIGHT;
+			degrees = rand() % (91) + 90;
 		case RIGHT:
 			temp_x = rand() % 29 + 21;
 			temp_y = rand() % (WINDOW_HEIGHT + 20 + 49 + 1) - 49;
+			degrees = rand() % (91);
 		case DOWN:
 			temp_x = rand() % (WINDOW_WIDTH + 20 + 49 + 1) - 49;
-			temp_y = (-1) * rand() % 29 + 21;
+			temp_y = (-1) * (rand() % 29 + 21);
+			degrees = rand() % (91) + 180;
 		}
 
+		radians = degrees_to_radians(degrees);
 
 
-		asteroid.set_velocity({ (std::rand() % 1000) / 10.f, (std::rand() % 1000) / 10.f });		// sets a random velocity for each of the asteroids
+		asteroid.set_position({ temp_x, temp_y });
+		asteroid.set_velocity({ absolute_velocity * sin(radians), -absolute_velocity * cos(radians) });		// sets a random velocity for each of the asteroids
 		asteroids.push_back(asteroid);
 	}
 
