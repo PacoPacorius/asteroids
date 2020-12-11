@@ -70,10 +70,10 @@ void Game::create_asteroid(unsigned int number) {
 		* 
 		*  Coordinates that are allowed for each side:		===============================================
 		*												   |	 |         x 	     |           y         |
-		*												   |LEFT |-21 - -49          |-20 - HEIGHT+49      |
+		*												   |LEFT |-49 - -21          |-20 - HEIGHT+49      |
 		*												   |UP   |-20 - WIDTH+49     |HEIGHT+21 - HEIGHT+49|
 		*												   |RIGHT|WIDTH+21 - WIDTH+49|-49 - HEIGHT+20      |
-		*												   |DOWN |-49 - WIDTH+20     |-49 - -20            |
+		*												   |DOWN |-49 - WIDTH+20     |-49 - -21            |
 		*												    ===============================================
 		*/		
 
@@ -88,7 +88,14 @@ void Game::create_asteroid(unsigned int number) {
 			temp_y = rand() % (WINDOW_HEIGHT + 49 + 20 + 1) - 20;
 			break;
 		case UP:
-
+			temp_x = (WINDOW_WIDTH + 49 + 20 + 1) - 20;
+			temp_y = rand() % 29 + 21 + WINDOW_HEIGHT;
+		case RIGHT:
+			temp_x = rand() % 29 + 21;
+			temp_y = rand() % (WINDOW_HEIGHT + 20 + 49 + 1) - 49;
+		case DOWN:
+			temp_x = rand() % (WINDOW_WIDTH + 20 + 49 + 1) - 49;
+			temp_y = (-1) * rand() % 29 + 21;
 		}
 
 
