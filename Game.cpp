@@ -1,9 +1,16 @@
+#define _USE_MATH_DEFINES
+
+#define MAX_ASTEROIDS 21
+
 #include "Game.h"
+#include <cmath>
 #include <iostream>
 #include <stdlib.h>
+#include <time.h>
 	
 Game::Game(){
 	ship.set_tex(textures.ship);
+	srand(time(NULL));
 }
 
 void Game::update(float dt){
@@ -42,7 +49,16 @@ void Game::update(float dt){
 		if (is_out_of_bounds(bullets[i])) { bullets.erase(bullets.begin() + i); std::cout << "deleted bullet" << std::endl; }
 	}
 
+	//regeneration of asteroids
+	if (asteroids.size() < MAX_ASTEROIDS) {
+		create_asteroid(MAX_ASTEROIDS - asteroids.size());
+	}
+
 }
+
+float degrees_to_radians(float degrees); /*{
+	return (degrees * M_PI) / 180;
+}*/
 
 void Game::create_asteroid(unsigned int number) {
 
@@ -50,7 +66,65 @@ void Game::create_asteroid(unsigned int number) {
 	for (unsigned int i = 0; i < number; i++) {
 		Asteroid asteroid(textures.asteroid);
 
-		asteroid.set_velocity({ (std::rand() % 1000) / 10.f, (std::rand() % 1000) / 10.f });		// sets a random velocity for each of the asteroids
+		/*	
+		*	* * * * * * * * * * * * * *
+		*	* HERE'S THE PLAN MY DUDE *
+		*	* * * * * * * * * * * * * *
+		* 
+		*  1. generate random numbers 21 - 49 (21 because of player screen wrapping, 49 because anything more than 50 off the edge will get immediately deleted)
+		* 
+		*  2. generate another set of numbers 0 - 3 which will determine on which side of the screen the asteroids will spawn (LEFT: 0, UP: 1, RIGHT: 2, DOWN: 3)
+		* 
+		*  3. depending on the side of the screen subtract from zero or add the numbers to the window dimensions
+		* 
+		*  4. generate a random angle at which the asteroids will fly towards (will take into account which side of the screen the asteroid is)
+		*  NOTE: I should probs test out which angles mean which directions, I know that degrees are clockwise but does up mean -45 to 45 or 0 to 90?
+		* 
+		*  5. give the asteroids a velocity using the code from the bullets and ship movement
+		* 
+		*  6. profit
+		* 
+		*  Coordinates that are allowed for each side:		===============================================
+		*												   |	 |         x 	     |           y         |
+		*												   |LEFT |-49 - -21          |-49 - HEIGHT+20      |
+		*												   |UP   |-20 - WIDTH+49     |-49 - -21			   |
+		*												   |RIGHT|WIDTH+21 - WIDTH+49|-20 - HEIGHT+49      |
+		*												   |DOWN |-49 - WIDTH+20     |HEIGHT+21 - HEIGHT+49|
+		*												    ===============================================
+		*/		
+
+		float temp_x, temp_y;
+		float radians, degrees, absolute_velocity = std::rand() % 1000 / 10.f + 10.f;
+		
+		Sides side = Sides(rand() % 4);		// pick a random side
+
+		switch (side) {												// POSITIONAL AND ANGULAR HELL
+		case LEFT:
+			temp_x = (-1) * (rand() % 29 + 21);
+			temp_y = rand() % (WINDOW_HEIGHT + 20 + 49 + 1) - 49;
+			degrees = rand() % (91) + 90 - 45;
+			break;
+		case UP:
+			temp_x = rand() % (WINDOW_WIDTH + 49 + 20 + 1) - 20;
+			temp_y = (-1) * (rand() % 29 + 21);
+			degrees = rand() % (91) + 180 - 45;
+			break;
+		case RIGHT:
+			temp_x = rand() % 29 + 21 + WINDOW_WIDTH;
+			temp_y = rand() % (WINDOW_HEIGHT + 49 + 20 + 1) - 20;
+			degrees = rand() % (91) + 270 - 45;
+			break;
+		case DOWN:
+			temp_x = rand() % (WINDOW_WIDTH + 20 + 49 + 1) - 49;
+			temp_y = rand() % 29 + 21 + WINDOW_HEIGHT;
+			degrees = rand() % (91) - 45;
+			break;
+		}
+
+		radians = degrees_to_radians(degrees);
+
+		asteroid.set_position({ temp_x, temp_y });
+		asteroid.set_velocity({ absolute_velocity * sin(radians), -absolute_velocity * cos(radians) });		// sets a random velocity for each of the asteroids
 		asteroids.push_back(asteroid);
 	}
 
@@ -63,3 +137,11 @@ bool Game::is_out_of_bounds(const Entity entity) {
 		entity.get_position().y < -50 ||
 		entity.get_position().y > WINDOW_HEIGHT + 50);
 	}
+
+// directions:
+// 0 is up
+// 90 is to the right
+// 180 is down
+// 270 is 
+
+// lefts still go left?
