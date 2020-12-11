@@ -48,8 +48,8 @@ void Game::update(float dt) {
 					sf::Vector2f v1 = { ((rand() % 1000) - 500) / 5.f, ((rand() % 1000) - 500) / 5.f };
 					sf::Vector2f v2 = { ((rand() % 1000) - 500) / 5.f, ((rand() % 1000) - 500) / 5.f };
 
-					Asteroid asteroid1(textures.asteroid, asteroids[j].get_position(), v1);
-					Asteroid asteroid2(textures.asteroid, asteroids[j].get_position(), v2);
+					Asteroid asteroid1(textures.get_random_asteroid_texture(), asteroids[j].get_position(), v1);
+					Asteroid asteroid2(textures.get_random_asteroid_texture(), asteroids[j].get_position(), v2);
 					asteroid1.set_scale(asteroids[j].get_scale() * 0.7 * (1.f - ((rand() % 3) / 10.f)));
 					asteroid2.set_scale(asteroids[j].get_scale() * 0.7 * (1.f - ((rand() % 3) / 10.f)));
 					asteroids.push_back(asteroid1);
@@ -79,7 +79,7 @@ void Game::create_asteroid(unsigned int number_of_asteroids, float scale) {
 
 	//create asteroid at random place outside screen
 	for (unsigned int i = 0; i < number_of_asteroids; i++) {
-		Asteroid asteroid(textures.asteroid);
+		Asteroid asteroid(textures.get_random_asteroid_texture());
 		asteroid.set_scale(scale);
 		asteroid.set_velocity({ (std::rand() % 1000) / 10.f, (std::rand() % 1000) / 10.f });
 		asteroids.push_back(asteroid);

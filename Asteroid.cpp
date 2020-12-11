@@ -2,10 +2,12 @@
 #include <stdlib.h>
 
 Asteroid::Asteroid() : Entity() {
+	spr.rotate(rand() % 360);
 	rotation_speed = 10.f * ((rand() % 10) - 5);
 }
 
 Asteroid::Asteroid(sf::Texture& tex) : Entity(tex) {
+	spr.rotate(rand() % 360);
 	rotation_speed = 10.f * ((rand() % 10) - 5);
 
 	spr.setOrigin(tex.getSize().x / 2.0f, tex.getSize().y / 2.0f);
@@ -18,7 +20,7 @@ Asteroid::Asteroid(sf::Texture& tex) : Entity(tex) {
 }
 
 Asteroid::Asteroid(sf::Texture& tex, sf::Vector2f in_position, sf::Vector2f in_velocity) : Entity(tex) {
-
+	spr.rotate(rand() % 360);
 	rotation_speed = 10.f* ((rand() % 10) - 5);
 
 	spr.setOrigin(tex.getSize().x / 2.0f, tex.getSize().y / 2.0f);
