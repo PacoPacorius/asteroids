@@ -55,9 +55,9 @@ void Game::create_asteroid(unsigned int number) {
 		*	* HERE'S THE PLAN MY DUDE *
 		*	* * * * * * * * * * * * * *
 		* 
-		*  1. generate random numbers 17 - 49 (17 because of the origin point, 49 because anything more than 50 off the edge will get immediately deleted
+		*  1. generate random numbers 21 - 49 (21 because of player screen wrapping, 49 because anything more than 50 off the edge will get immediately deleted)
 		* 
-		*  2. generate another set of numbers 0 - 3 which will determine on which side of the screen the asteroids will spawn
+		*  2. generate another set of numbers 0 - 3 which will determine on which side of the screen the asteroids will spawn (LEFT: 0, UP: 1, RIGHT: 2, DOWN: 3)
 		* 
 		*  3. depending on the side of the screen subtract from zero or add the numbers to the window dimensions
 		* 
@@ -67,7 +67,31 @@ void Game::create_asteroid(unsigned int number) {
 		*  5. give the asteroids a velocity using the code from the bullets and ship movement
 		* 
 		*  6. profit
-		*/
+		* 
+		*  Coordinates that are allowed for each side:		===============================================
+		*												   |	 |         x 	     |           y         |
+		*												   |LEFT |-21 - -49          |-20 - HEIGHT+49      |
+		*												   |UP   |-20 - WIDTH+49     |HEIGHT+21 - HEIGHT+49|
+		*												   |RIGHT|WIDTH+21 - WIDTH+49|-49 - HEIGHT+20      |
+		*												   |DOWN |-49 - WIDTH+20     |-49 - -20            |
+		*												    ===============================================
+		*/		
+
+		int temp_x, temp_y;
+		/*int temp_x = rand() % 29 + 21;
+		int temp_y = rand() % 29 + 21;*/
+		Sides side = Sides(rand() % 4);		// pick a random side
+
+		switch (side) {
+		case LEFT:
+			temp_x = (-1) * rand() % 29 + 21;
+			temp_y = rand() % (WINDOW_HEIGHT + 49 + 20 + 1) - 20;
+			break;
+		case UP:
+
+		}
+
+
 
 		asteroid.set_velocity({ (std::rand() % 1000) / 10.f, (std::rand() % 1000) / 10.f });		// sets a random velocity for each of the asteroids
 		asteroids.push_back(asteroid);
