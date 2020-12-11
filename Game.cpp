@@ -86,10 +86,10 @@ void Game::create_asteroid(unsigned int number) {
 		* 
 		*  Coordinates that are allowed for each side:		===============================================
 		*												   |	 |         x 	     |           y         |
-		*												   |LEFT |-49 - -21          |-20 - HEIGHT+49      |
-		*												   |UP   |-20 - WIDTH+49     |HEIGHT+21 - HEIGHT+49|
-		*												   |RIGHT|WIDTH+21 - WIDTH+49|-49 - HEIGHT+20      |
-		*												   |DOWN |-49 - WIDTH+20     |-49 - -21            |
+		*												   |LEFT |-49 - -21          |-49 - HEIGHT+20      |
+		*												   |UP   |-20 - WIDTH+49     |-49 - -21			   |
+		*												   |RIGHT|WIDTH+21 - WIDTH+49|-20 - HEIGHT+49      |
+		*												   |DOWN |-49 - WIDTH+20     |HEIGHT+21 - HEIGHT+49|
 		*												    ===============================================
 		*/		
 
@@ -102,21 +102,24 @@ void Game::create_asteroid(unsigned int number) {
 		switch (side) {
 		case LEFT:
 			temp_x = (-1) * (rand() % 29 + 21);
-			temp_y = rand() % (WINDOW_HEIGHT + 49 + 20 + 1) - 20;
-			degrees = rand() % (91) - 90;
+			temp_y = rand() % (WINDOW_HEIGHT + 20 + 49 + 1) - 49;
+			degrees = rand() % (91) + 135;
 			break;
 		case UP:
 			temp_x = rand() % (WINDOW_WIDTH + 49 + 20 + 1) - 20;
-			temp_y = rand() % 29 + 21 + WINDOW_HEIGHT;
-			degrees = rand() % (91) + 90;
+			temp_y = (-1) * (rand() % 29 + 21);
+			degrees = rand() % (91) + 45;
+			break;
 		case RIGHT:
 			temp_x = rand() % 29 + 21;
-			temp_y = rand() % (WINDOW_HEIGHT + 20 + 49 + 1) - 49;
-			degrees = rand() % (91);
+			temp_y = rand() % (WINDOW_HEIGHT + 49 + 20 + 1) - 20;
+			degrees = rand() % (91) - 135;
+			break;
 		case DOWN:
 			temp_x = rand() % (WINDOW_WIDTH + 20 + 49 + 1) - 49;
-			temp_y = (-1) * (rand() % 29 + 21);
-			degrees = rand() % (91) + 180;
+			temp_y = rand() % 29 + 21 + WINDOW_HEIGHT;
+			degrees = rand() % (91) - 45;
+			break;
 		}
 
 		radians = degrees_to_radians(degrees);
@@ -136,3 +139,9 @@ bool Game::is_out_of_bounds(const Entity entity) {
 		entity.get_position().y < -50 ||
 		entity.get_position().y > WINDOW_HEIGHT + 50);
 	}
+
+
+// ups are spawned down and their direction is up
+// rights are spawned down and their velocity goes left and down
+// lefts' velocity goes left
+// downs are spawned in the correct positions, but their direction is downwards (fixed?)
