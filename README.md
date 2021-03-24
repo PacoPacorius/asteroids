@@ -1,4 +1,3 @@
 # asteroids
-sysk
 
-asteroids clone fuck you
+asteroids clone i did with a fren <3
